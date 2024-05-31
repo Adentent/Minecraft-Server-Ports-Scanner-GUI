@@ -91,9 +91,8 @@ class InfoWindow(Toplevel, Infer):
             self.tab.add(self.mod_info, text="模组信息")
 
     def load_window_title(self):
-        text = ""
-        for extra in self.data.description_json:
-            text += extra["text"]
+        text = "".join([extra["text"] for extra in self.data.description_json])
+        text = text.split("\n")[0].strip()
         self.title(text)
 
 
