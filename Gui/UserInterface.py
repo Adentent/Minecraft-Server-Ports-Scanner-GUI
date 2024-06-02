@@ -1,6 +1,8 @@
 # -*- coding: UTF-8 -*-
+import os.path
 from sys import stderr
 from time import perf_counter
+from typing import Generator
 
 from Gui.ScanBarGui import ScanBar
 from Gui.ServerListGui import ServerList
@@ -47,6 +49,8 @@ class GUI(Window):
         self.servers = ServerList(self.server_scanF, self.logger)
         self.scan_bar = ScanBar(self.server_scanF, self.logger, self.servers, self)
 
+        self.load_extended_fonts()
+
         self.pack_widgets()
         print(f"GUI构建时间: {perf_counter() - timer:.3f}秒")
 
@@ -79,3 +83,20 @@ class GUI(Window):
         self.tabs.add(self.server_scanF, text="控制面板")
         self.tabs.add(self.logger, text="日志")
         self.tabs.add(self.settings, text="设置")
+
+    @staticmethod
+    def load_extended_fonts() -> List[Font]:
+        fonts_list = list()
+        extended_fonts_list: Generator[str, Any, None] = GUI.search_extended_fonts()
+        for i in extended_fonts_list:
+            fonts_list.append(Font(file=i))
+
+        return fonts_list
+
+    @staticmethod
+    def search_extended_fonts() -> Generator[str, Any, None]:
+        fonts_folder_path = os.path.join(".", "assets", "fonts")
+        fonts_files = os.listdir(fonts_folder_path)
+        fonts_path = (os.path.join(fonts_folder_path, i) for i in fonts_files if i.endswith((".ttf", ".otf", ".woff")))
+
+        return fonts_path

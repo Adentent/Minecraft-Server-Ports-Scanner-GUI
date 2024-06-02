@@ -39,9 +39,9 @@ class SettingsFrame(Frame):
             "if_version_name_shown_as_label": "将 VersionName 显示为纯文本格式",
             "theme_name": "主题 ( 不建议在此处修改 )",
             "ping_before_scan": "扫描之前先检测连通性",
-            "global_font": "字体",
+            "global_font": "显示字体",
             "max_thread_number": "扫描时允许的最大线程数",
-            "MOTD_use_unicode_font": "MOTD全部使用Unifont字体显示"
+            "MOTD_font": "MOTD 渲染字体"
         }
 
         self.config_frame = ScrolledFrame(self)

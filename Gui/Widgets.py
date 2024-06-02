@@ -21,7 +21,6 @@ from Network.Scanner import ServerInfo
 ERROR = "error"
 DEBUG = "debug"
 
-
 def get_now_time() -> str:
     return strftime("%Y-%m-%d_%H-%M-%S", localtime())
 
@@ -68,19 +67,8 @@ class MOTD(Text):
 
         Returns:
             根据设置界面得到的实例化后的字体
-        Notes:
-            有概率会引发 RuntimeError, 原因未知
         """
-        if Vars.user_settings_loader.configs['MOTD_use_unicode_font']:
-            if "UnifontExMono" not in font.families():
-                custom_font = Font(file="assets/UnifontExMono.ttf", family="UnifontExMono")
-            else:
-                custom_font = font.Font(family="UnifontExMono")
-        else:
-            if "Minecraft AE" not in font.families():
-                custom_font = Font(file="assets/MinecraftFont.ttf", family="Minecraft AE")
-            else:
-                custom_font = font.Font(family="Minecraft AE")
+        custom_font = font.Font(family=Vars.user_settings_loader.configs["MOTD_font"])
 
         return custom_font
 

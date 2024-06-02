@@ -205,11 +205,11 @@ class UserSettingsLoader:
     @staticmethod
     def defaults() -> Dict:
         return {'if_version_name_shown_as_label': False,
+                "global_font": "微软雅黑",
+                "MOTD_font": "微软雅黑",
                 'theme_name': "darkly",
                 'ping_before_scan': True,
-                "global_font": "微软雅黑",
-                "max_thread_number": 256,
-                "MOTD_use_unicode_font": True}
+                "max_thread_number": 256}
 
 
 class UserSettingsSaver:
